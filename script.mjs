@@ -67,10 +67,13 @@ function toggleLang() {
   }
   localStorage.setItem('lang', lang);
 }
+
 const rightShift = document.querySelector('.ShiftRight');
 const leftShift = document.querySelector('.ShiftLeft');
 function toggleShift(event) {
-  event.target.classList.toggle('keyboard__key_active');
+  if (event.target === leftShift || event.target === rightShift) {
+    event.target.classList.toggle('keyboard__key_active');
+  }
   keyCase = keyCase === 'caseDown' ? 'caseUp' : 'caseDown';
   for (let i = 0; i < keysData.length; i += 1) {
     for (let j = 0; j < keysData[i].length; j += 1) {
@@ -78,9 +81,20 @@ function toggleShift(event) {
     }
   }
 }
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+    toggleShift(event);
+  }
+});
+window.addEventListener('keyup', (event) => {
+  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+    toggleShift(event);
+  }
+});
 
 rightShift.addEventListener('click', toggleShift);
 leftShift.addEventListener('click', toggleShift);
+
 document.querySelector('.Space').addEventListener('click', toggleLang);
 
 document.querySelectorAll('.keyboard__key').forEach((key) => key.addEventListener('click', printWithMouse));
