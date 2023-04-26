@@ -14,9 +14,9 @@ body {
   align-content: center;
 }
 .title {
-  margin: 0 auto;
+  margin: 15px auto 0;
   text-align: center;
-  color: rgb(212, 211, 211);
+  color: rgb(197, 197, 197);
 
 }
 .textarea {
@@ -26,8 +26,8 @@ body {
   border-radius: 5px;
   outline: none;
   background: #373737;
-  color: rgb(212, 211, 211);
-  font-size: 18px;
+  color: rgb(244, 244, 244);
+  font-size: 20px;
 }
 
 
@@ -50,8 +50,7 @@ body {
 .keyboard__key {
   height: 55px;
   min-width: 55px;
-  background: hsla(30, 4%, 11%, 0.981);
-  background-color: rgb(29, 29, 29);
+  background: rgb(29, 29, 29);
   margin: 0 2px;
   border-radius: 5px;
   color: rgb(31, 166, 173);
@@ -73,10 +72,13 @@ body {
 
 .Enter,
 .ShiftLeft,
-.ShiftRight,
 .Backspace {
   width: 100%;
-  
+}
+
+
+.ShiftRight {
+  min-width: 114px;
 }
 
 .Backspace,
@@ -98,7 +100,7 @@ body {
 
 
 .Space {
-  width: 413px;
+  width: 418px;
 }
 
 .keyboard__key:active {
@@ -108,9 +110,16 @@ body {
   text-shadow: 0 0 5px rgb(125,249,255);
 }
 
+.keyboard__key_active {
+  transform: scale(0.95);
+  box-shadow: 0 0 8px 2px rgb(125,249,255);
+  color: rgb(125,249,255);
+  text-shadow: 0 0 5px rgb(125,249,255);
+}
+
 .description {
   font-size: 20px;
   margin: 30px auto -10px;
-  color: rgb(212, 211, 211);
+  color: rgb(197, 197, 197);
   text-align: center;
 }
