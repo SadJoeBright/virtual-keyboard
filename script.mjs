@@ -72,11 +72,17 @@ function deactivate(event) {
   document.querySelector(`.${event.code}`).classList.remove('keyboard__key_active');
 }
 
-function printWithMouse(event) {
+function addCharacter(event) {
+  const cursorPosition = textArea.selectionStart;
+  // let currentValue = textArea.value;
   if ((event.target !== textArea
     && !specialKeys.some((key) => event.target.classList.contains(key)))
   || (event.target === textArea && !specialKeys.some((key) => document.querySelector(`.${event.code}`).classList.contains(key)))) {
-    textArea.value += event.target.textContent || document.querySelector(`.${event.code}`).textContent;
+    textArea.value = textArea.value.substring(0, cursorPosition)
+    + (event.target.textContent || document.querySelector(`.${event.code}`).textContent)
+    + textArea.value.substring(cursorPosition);
+    textArea.selectionStart = cursorPosition + 1;
+    textArea.selectionEnd = textArea.selectionStart;
   }
 }
 
@@ -86,8 +92,8 @@ function moveCursorLeft() {
     textArea.setSelectionRange(currentPosition - 1, currentPosition - 1);
   }
 }
-const btnArrowLeft = document.querySelector('.ArrowLeft');
-btnArrowLeft.addEventListener('click', moveCursorLeft);
+const keyArrowLeft = document.querySelector('.ArrowLeft');
+keyArrowLeft.addEventListener('click', moveCursorLeft);
 document.addEventListener('keydown', (event) => {
   if (event.code === 'ArrowLeft') moveCursorLeft();
 });
@@ -96,32 +102,50 @@ function moveCursorRight() {
   const currentPosition = textArea.selectionStart;
   textArea.setSelectionRange(currentPosition + 1, currentPosition + 1);
 }
-const btnArrowRight = document.querySelector('.ArrowRight');
-btnArrowRight.addEventListener('click', moveCursorRight);
+const keyArrowRight = document.querySelector('.ArrowRight');
+keyArrowRight.addEventListener('click', moveCursorRight);
 document.addEventListener('keydown', (event) => {
   if (event.code === 'ArrowRight') moveCursorRight();
 });
 
-function enter() {
+function emulateEnterKey() {
   textArea.value += '\n';
 }
-const btnEnter = document.querySelector('.Enter');
-btnEnter.addEventListener('click', enter);
+const keyEnter = document.querySelector('.Enter');
+keyEnter.addEventListener('click', emulateEnterKey);
 document.addEventListener('keydown', (event) => {
-  if (event.code === 'Enter') enter();
+  if (event.code === 'Enter') emulateEnterKey();
 });
 
-function removePrev() {
+function emulateBackspaseKey() {
   const cursorPosition = textArea.selectionStart;
   textArea.value = textArea.value.slice(0, textArea.selectionStart - 1)
   + textArea.value.slice(textArea.selectionStart);
   textArea.selectionStart = cursorPosition - 1;
   textArea.selectionEnd = textArea.selectionStart;
 }
-const btnBackspase = document.querySelector('.Backspace');
-btnBackspase.addEventListener('click', removePrev);
+const keyBackspase = document.querySelector('.Backspace');
+keyBackspase.addEventListener('click', emulateBackspaseKey);
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Backspace') emulateBackspaseKey();
+});
+document.addEventListener('keydown', addCharacter);
 
-document.addEventListener('keydown', printWithMouse);
+function emulateDeleteKey() {
+  const cursorPosition = textArea.selectionStart;
+  textArea.value = textArea.value.slice(0, textArea.selectionStart)
+  + textArea.value.slice(textArea.selectionStart + 1);
+  textArea.selectionStart = cursorPosition;
+  textArea.selectionEnd = textArea.selectionStart;
+}
+const keyDel = document.querySelector('.Delete');
+keyDel.addEventListener('click', emulateDeleteKey);
+
+function emulateTabKey() {
+  textArea.value += '  ';
+}
+const keyTab = document.querySelector('.Tab');
+keyTab.addEventListener('click', emulateTabKey);
 
 function toggleLang() {
   lang = lang === 'eng' ? 'rus' : 'eng';
@@ -164,7 +188,7 @@ window.addEventListener('keyup', (event) => {
 rightShift.addEventListener('click', toggleShift);
 leftShift.addEventListener('click', toggleShift);
 
-document.querySelectorAll('.keyboard__key').forEach((key) => key.addEventListener('click', printWithMouse));
+document.querySelectorAll('.keyboard__key').forEach((key) => key.addEventListener('click', addCharacter));
 document.addEventListener('keydown', activate);
 document.addEventListener('keyup', deactivate);
 document.addEventListener('click', () => textArea.focus());
