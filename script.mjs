@@ -1,5 +1,24 @@
 import keysData from './keysData.mjs';
 
+const specialKeys = [
+  'Backspace',
+  'Tab',
+  'Enter',
+  'CapsLock',
+  'ShiftLeft',
+  'ShiftRight',
+  'AltLeft',
+  'AltRight',
+  'ControlLeft',
+  'ControlRight',
+  'MetaLeft',
+  'Delete',
+  'ArrowLeft',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowRight',
+];
+
 let lang = localStorage.getItem('lang') || 'eng';
 let keyCase = 'caseDown';
 const wrapper = document.createElement('div');
@@ -40,29 +59,75 @@ description.innerHTML = 'The keyboard was created in <strong>Windows</strong>';
 wrapper.append(description);
 const langInstruction = document.createElement('p');
 langInstruction.classList.add('description');
-langInstruction.innerHTML = 'To switch the languge press <strong>LeftAlt + LeftShift</strong>';
+langInstruction.innerHTML = 'To switch the languge press <strong>LeftCtrl + LeftShift</strong>';
 wrapper.append(langInstruction);
 
 function activate(event) {
-  // event.preventDefault();
-  // if (event.code === )
+  event.preventDefault();
   document.querySelector(`.${event.code}`).classList.add('keyboard__key_active');
-  // textArea.value += event.key;
 }
+
 function deactivate(event) {
-  // event.preventDefault();
+  event.preventDefault();
   document.querySelector(`.${event.code}`).classList.remove('keyboard__key_active');
 }
 
 function printWithMouse(event) {
-  textArea.value += event.target.innerHTML;
+  if ((event.target !== textArea
+    && !specialKeys.some((key) => event.target.classList.contains(key)))
+  || (event.target === textArea && !specialKeys.some((key) => document.querySelector(`.${event.code}`).classList.contains(key)))) {
+    textArea.value += event.target.textContent || document.querySelector(`.${event.code}`).textContent;
+  }
 }
+
+function moveCursorLeft() {
+  const currentPosition = textArea.selectionStart;
+  if (currentPosition > 0) {
+    textArea.setSelectionRange(currentPosition - 1, currentPosition - 1);
+  }
+}
+const btnArrowLeft = document.querySelector('.ArrowLeft');
+btnArrowLeft.addEventListener('click', moveCursorLeft);
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'ArrowLeft') moveCursorLeft();
+});
+
+function moveCursorRight() {
+  const currentPosition = textArea.selectionStart;
+  textArea.setSelectionRange(currentPosition + 1, currentPosition + 1);
+}
+const btnArrowRight = document.querySelector('.ArrowRight');
+btnArrowRight.addEventListener('click', moveCursorRight);
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'ArrowRight') moveCursorRight();
+});
+
+function enter() {
+  textArea.value += '\n';
+}
+const btnEnter = document.querySelector('.Enter');
+btnEnter.addEventListener('click', enter);
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Enter') enter();
+});
+
+function removePrev() {
+  const cursorPosition = textArea.selectionStart;
+  textArea.value = textArea.value.slice(0, textArea.selectionStart - 1)
+  + textArea.value.slice(textArea.selectionStart);
+  textArea.selectionStart = cursorPosition - 1;
+  textArea.selectionEnd = textArea.selectionStart;
+}
+const btnBackspase = document.querySelector('.Backspace');
+btnBackspase.addEventListener('click', removePrev);
+
+document.addEventListener('keydown', printWithMouse);
 
 function toggleLang() {
   lang = lang === 'eng' ? 'rus' : 'eng';
   for (let i = 0; i < keysData.length; i += 1) {
     for (let j = 0; j < keysData[i].length; j += 1) {
-      document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].innerText = keysData[i][j][`${lang}`][keyCase];
+      document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].textContent = keysData[i][j][`${lang}`][keyCase];
     }
   }
   localStorage.setItem('lang', lang);
@@ -74,10 +139,14 @@ function toggleShift(event) {
   if (event.target === leftShift || event.target === rightShift) {
     event.target.classList.toggle('keyboard__key_active');
   }
+  if (keyCase === 'caseUp') {
+    rightShift.classList.remove('keyboard__key_active');
+    leftShift.classList.remove('keyboard__key_active');
+  }
   keyCase = keyCase === 'caseDown' ? 'caseUp' : 'caseDown';
   for (let i = 0; i < keysData.length; i += 1) {
     for (let j = 0; j < keysData[i].length; j += 1) {
-      document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].innerText = keysData[i][j][`${lang}`][keyCase];
+      document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].textContent = keysData[i][j][`${lang}`][keyCase];
     }
   }
 }
@@ -88,16 +157,19 @@ document.addEventListener('keydown', (event) => {
 });
 window.addEventListener('keyup', (event) => {
   if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-    toggleShift(event);
+    if (keyCase === 'caseUp') toggleShift(event);
   }
 });
 
 rightShift.addEventListener('click', toggleShift);
 leftShift.addEventListener('click', toggleShift);
 
-document.querySelector('.Space').addEventListener('click', toggleLang);
-
 document.querySelectorAll('.keyboard__key').forEach((key) => key.addEventListener('click', printWithMouse));
 document.addEventListener('keydown', activate);
 document.addEventListener('keyup', deactivate);
 document.addEventListener('click', () => textArea.focus());
+document.addEventListener('keydown', (event) => {
+  if (event.ctrlKey && event.shiftKey) {
+    toggleLang();
+  }
+});
