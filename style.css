@@ -1,6 +1,7 @@
 body {
   background-color: #232323;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  transform: scale(90%);
 }
 * {
   box-sizing: border-box;
@@ -14,7 +15,7 @@ body {
   align-content: center;
 }
 .title {
-  margin: 15px auto 0;
+  margin: -20px auto 10px;
   text-align: center;
   color: rgb(197, 197, 197);
 
@@ -90,7 +91,7 @@ body {
 .ShiftRight,
 .ControlLeft,
 .ControlRight,
-.MetaLeft,
+.Lang,
 .AltLeft,
 .AltRight {
   background: rgb(22, 22, 22);
@@ -119,7 +120,7 @@ body {
 
 .description {
   font-size: 20px;
-  margin: 30px auto -10px;
+  margin: 30px auto -20px;
   color: rgb(197, 197, 197);
   text-align: center;
 }

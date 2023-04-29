@@ -198,12 +198,16 @@ const keysData = [
     {
       className: 'Backspace',
       eng: {
+        caps: 'Backspace',
         caseDown: 'Backspace',
         caseUp: 'Backspace',
+        shiftCaps: 'Backspace',
       },
       rus: {
+        caps: 'Backspace',
         caseDown: 'Backspace',
         caseUp: 'Backspace',
+        shiftCaps: 'Backspace',
       },
     },
   ],
@@ -211,122 +215,166 @@ const keysData = [
     {
       className: 'Tab',
       eng: {
+        caps: 'Tab',
         caseDown: 'Tab',
         caseUp: 'Tab',
+        shiftCaps: 'Tab',
       },
       rus: {
+        caps: 'Tab',
         caseDown: 'Tab',
         caseUp: 'Tab',
+        shiftCaps: 'Tab',
       },
     },
     {
       className: 'KeyQ',
       eng: {
+        caps: 'Q',
         caseDown: 'q',
         caseUp: 'Q',
+        shiftCaps: 'q',
       },
       rus: {
+        caps: 'Й',
         caseDown: 'й',
         caseUp: 'Й',
+        shiftCaps: 'й',
       },
     },
     {
       className: 'KeyW',
       eng: {
+        caps: 'W',
         caseDown: 'w',
         caseUp: 'W',
+        shiftCaps: 'w',
       },
       rus: {
+        caps: 'Ц',
         caseDown: 'ц',
         caseUp: 'Ц',
+        shiftCaps: 'ц',
       },
     },
     {
       className: 'KeyE',
       eng: {
+        caps: 'E',
         caseDown: 'e',
         caseUp: 'E',
+        shiftCaps: 'e',
       },
       rus: {
+        caps: 'У',
         caseDown: 'у',
         caseUp: 'У',
+        shiftCaps: 'у',
       },
     },
     {
       className: 'KeyR',
       eng: {
+        caps: 'R',
         caseDown: 'r',
         caseUp: 'R',
+        shiftCaps: 'r',
       },
       rus: {
+        caps: 'K',
         caseDown: 'к',
         caseUp: 'К',
+        shiftCaps: 'к',
       },
     },
     {
       className: 'KeyT',
       eng: {
+        caps: 'T',
         caseDown: 't',
         caseUp: 'T',
+        shiftCaps: 't',
       },
       rus: {
+        caps: 'E',
         caseDown: 'е',
         caseUp: 'Е',
+        shiftCaps: 'е',
       },
     },
     {
       className: 'KeyY',
       eng: {
+        caps: 'Y',
         caseDown: 'y',
         caseUp: 'Y',
+        shiftCaps: 'y',
       },
       rus: {
+        caps: 'Н',
         caseDown: 'н',
         caseUp: 'Н',
+        shiftCaps: 'н',
       },
     },
     {
       className: 'KeyU',
       eng: {
+        caps: 'U',
         caseDown: 'u',
         caseUp: 'U',
+        shiftCaps: 'u',
       },
       rus: {
+        caps: 'Г',
         caseDown: 'г',
         caseUp: 'Г',
+        shiftCaps: 'г',
       },
     },
     {
       className: 'KeyI',
       eng: {
+        caps: 'I',
         caseDown: 'i',
         caseUp: 'I',
+        shiftCaps: 'i',
       },
       rus: {
+        caps: 'Ш',
         caseDown: 'ш',
         caseUp: 'Ш',
+        shiftCaps: 'ш',
       },
     },
     {
       className: 'KeyO',
       eng: {
+        caps: 'O',
         caseDown: 'o',
         caseUp: 'O',
+        shiftCaps: 'o',
       },
       rus: {
+        caps: 'Щ',
         caseDown: 'щ',
         caseUp: 'Щ',
+        shiftCaps: 'щ',
       },
     },
     {
       className: 'KeyP',
       eng: {
+        caps: 'P',
         caseDown: 'p',
         caseUp: 'P',
+        shiftCaps: 'p',
       },
       rus: {
+        caps: 'З',
         caseDown: 'з',
         caseUp: 'З',
+        shiftCaps: 'з',
       },
     },
     {
@@ -377,12 +425,16 @@ const keysData = [
     {
       className: 'Delete',
       eng: {
+        caps: 'Del',
         caseDown: 'Del',
         caseUp: 'Del',
+        shiftCaps: 'Del',
       },
       rus: {
+        caps: 'Del',
         caseDown: 'Del',
         caseUp: 'Del',
+        shiftCaps: 'Del',
       },
     },
   ],
@@ -390,111 +442,151 @@ const keysData = [
     {
       className: 'CapsLock',
       eng: {
+        caps: 'CapsLock',
         caseDown: 'CapsLock',
         caseUp: 'CapsLock',
+        shiftCaps: 'CapsLock',
       },
       rus: {
+        caps: 'CapsLock',
         caseDown: 'CapsLock',
         caseUp: 'CapsLock',
+        shiftCaps: 'CapsLock',
       },
     },
     {
       className: 'KeyA',
       eng: {
+        caps: 'A',
         caseDown: 'a',
         caseUp: 'A',
+        shiftCaps: 'a',
       },
       rus: {
+        caps: 'Ф',
         caseDown: 'ф',
         caseUp: 'Ф',
+        shiftCaps: 'ф',
       },
     },
     {
       className: 'KeyS',
       eng: {
+        caps: 'S',
         caseDown: 's',
         caseUp: 'S',
+        shiftCaps: 's',
       },
       rus: {
+        caps: 'Ы',
         caseDown: 'ы',
         caseUp: 'Ы',
+        shiftCaps: 'ы',
       },
     },
     {
       className: 'KeyD',
       eng: {
+        caps: 'D',
         caseDown: 'd',
         caseUp: 'D',
+        shiftCaps: 'd',
       },
       rus: {
+        caps: 'В',
         caseDown: 'в',
         caseUp: 'В',
+        shiftCaps: 'в',
       },
     },
     {
       className: 'KeyF',
       eng: {
+        caps: 'F',
         caseDown: 'f',
         caseUp: 'F',
+        shiftCaps: 'f',
       },
       rus: {
+        caps: 'А',
         caseDown: 'а',
         caseUp: 'А',
+        shiftCaps: 'а',
       },
     },
     {
       className: 'KeyG',
       eng: {
+        caps: 'G',
         caseDown: 'g',
         caseUp: 'G',
+        shiftCaps: 'g',
       },
       rus: {
+        caps: 'П',
         caseDown: 'п',
         caseUp: 'П',
+        shiftCaps: 'п',
       },
     },
     {
       className: 'KeyH',
       eng: {
+        caps: 'H',
         caseDown: 'h',
         caseUp: 'H',
+        shiftCaps: 'h',
       },
       rus: {
+        caps: 'Р',
         caseDown: 'р',
         caseUp: 'Р',
+        shiftCaps: 'р',
       },
     },
     {
       className: 'KeyJ',
       eng: {
+        caps: 'J',
         caseDown: 'j',
         caseUp: 'J',
+        shiftCaps: 'j',
       },
       rus: {
+        caps: 'О',
         caseDown: 'о',
         caseUp: 'О',
+        shiftCaps: 'о',
       },
     },
     {
       className: 'KeyK',
       eng: {
+        caps: 'K',
         caseDown: 'k',
         caseUp: 'K',
+        shiftCaps: 'k',
       },
       rus: {
+        caps: 'Л',
         caseDown: 'л',
         caseUp: 'Л',
+        shiftCaps: 'л',
       },
     },
     {
       className: 'KeyL',
       eng: {
+        caps: 'L',
         caseDown: 'l',
         caseUp: 'L',
+        shiftCaps: 'l',
       },
       rus: {
+        caps: 'Д',
         caseDown: 'д',
         caseUp: 'Д',
+        shiftCaps: 'д',
       },
     },
     {
@@ -530,12 +622,16 @@ const keysData = [
     {
       className: 'Enter',
       eng: {
+        caps: 'Enter',
         caseDown: 'Enter',
         caseUp: 'Enter',
+        shiftCaps: 'Enter',
       },
       rus: {
+        caps: 'Enter',
         caseDown: 'Enter',
         caseUp: 'Enter',
+        shiftCaps: 'Enter',
       },
     },
   ],
@@ -543,89 +639,121 @@ const keysData = [
     {
       className: 'ShiftLeft',
       eng: {
+        caps: 'Shift',
         caseDown: 'Shift',
         caseUp: 'Shift',
+        shiftCaps: 'Shift',
       },
       rus: {
+        caps: 'Shift',
         caseDown: 'Shift',
         caseUp: 'Shift',
+        shiftCaps: 'Shift',
       },
     },
     {
       className: 'KeyZ',
       eng: {
+        caps: 'Z',
         caseDown: 'z',
         caseUp: 'Z',
+        shiftCaps: 'z',
       },
       rus: {
+        caps: 'Я',
         caseDown: 'я',
         caseUp: 'Я',
+        shiftCaps: 'я',
       },
     },
     {
       className: 'KeyX',
       eng: {
+        caps: 'X',
         caseDown: 'x',
         caseUp: 'X',
+        shiftCaps: 'x',
       },
       rus: {
+        caps: 'Ч',
         caseDown: 'ч',
         caseUp: 'Ч',
+        shiftCaps: 'ч',
       },
     },
     {
       className: 'KeyC',
       eng: {
+        caps: 'C',
         caseDown: 'c',
         caseUp: 'C',
+        shiftCaps: 'c',
       },
       rus: {
+        caps: 'С',
         caseDown: 'с',
         caseUp: 'С',
+        shiftCaps: 'с',
       },
     },
     {
       className: 'KeyV',
       eng: {
+        caps: 'V',
         caseDown: 'v',
         caseUp: 'V',
+        shiftCaps: 'v',
       },
       rus: {
+        caps: 'М',
         caseDown: 'м',
         caseUp: 'М',
+        shiftCaps: 'м',
       },
     },
     {
       className: 'KeyB',
       eng: {
+        caps: 'B',
         caseDown: 'b',
         caseUp: 'B',
+        shiftCaps: 'b',
       },
       rus: {
+        caps: 'И',
         caseDown: 'и',
         caseUp: 'И',
+        shiftCaps: 'и',
       },
     },
     {
       className: 'KeyN',
       eng: {
+        caps: 'N',
         caseDown: 'n',
         caseUp: 'N',
+        shiftCaps: 'n',
       },
       rus: {
+        caps: 'Т',
         caseDown: 'т',
         caseUp: 'Т',
+        shiftCaps: 'т',
       },
     },
     {
       className: 'KeyM',
       eng: {
+        caps: 'M',
         caseDown: 'm',
         caseUp: 'M',
+        shiftCaps: 'm',
       },
       rus: {
+        caps: 'Ь',
         caseDown: 'ь',
         caseUp: 'Ь',
+        shiftCaps: 'ь',
       },
     },
     {
@@ -676,23 +804,31 @@ const keysData = [
     {
       className: 'ArrowUp',
       eng: {
+        caps: '▲',
         caseDown: '▲',
         caseUp: '▲',
+        shiftCaps: '▲',
       },
       rus: {
+        caps: '▲',
         caseDown: '▲',
         caseUp: '▲',
+        shiftCaps: '▲',
       },
     },
     {
       className: 'ShiftRight',
       eng: {
+        caps: 'Shift',
         caseDown: 'Shift',
         caseUp: 'Shift',
+        shiftCaps: 'Shift',
       },
       rus: {
+        caps: 'Shift',
         caseDown: 'Shift',
         caseUp: 'Shift',
+        shiftCaps: 'Shift',
       },
     },
   ],
@@ -700,102 +836,139 @@ const keysData = [
     {
       className: 'ControlLeft',
       eng: {
+        caps: 'Ctrl',
         caseDown: 'Ctrl',
         caseUp: 'Ctrl',
+        shiftCaps: 'Ctrl',
       },
       rus: {
+        caps: 'Ctrl',
         caseDown: 'Ctrl',
         caseUp: 'Ctrl',
+        shiftCaps: 'Ctrl',
       },
     },
     {
-      className: 'MetaLeft',
+      className: 'Lang',
       eng: {
-        caseDown: 'Win',
-        caseUp: 'Win',
+        caps: 'En',
+        caseDown: 'En',
+        caseUp: 'En',
+        shiftCaps: 'En',
       },
       rus: {
-        caseDown: 'Win',
-        caseUp: 'Win',
+        caps: 'Рус',
+        caseDown: 'Рус',
+        caseUp: 'Рус',
+        shiftCaps: 'Рус',
       },
     },
     {
       className: 'AltLeft',
       eng: {
+        caps: 'Alt',
         caseDown: 'Alt',
         caseUp: 'Alt',
+        shiftCaps: 'Alt',
       },
       rus: {
+        caps: 'Alt',
         caseDown: 'Alt',
         caseUp: 'Alt',
+        shiftCaps: 'Alt',
       },
     },
     {
       className: 'Space',
       eng: {
+        caps: ' ',
         caseDown: ' ',
         caseUp: ' ',
+        shiftCaps: ' ',
       },
       rus: {
+        caps: ' ',
         caseDown: ' ',
         caseUp: ' ',
+        shiftCaps: ' ',
       },
     },
     {
       className: 'AltRight',
       eng: {
+        caps: 'Alt',
         caseDown: 'Alt',
         caseUp: 'Alt',
+        shiftCaps: 'Alt',
       },
       rus: {
+        caps: 'Alt',
         caseDown: 'Alt',
         caseUp: 'Alt',
+        shiftCaps: 'Alt',
       },
     },
     {
       className: 'ArrowLeft',
       eng: {
+        caps: '◄',
         caseDown: '◄',
         caseUp: '◄',
+        shiftCaps: '◄',
       },
       rus: {
+        caps: '◄',
         caseDown: '◄',
         caseUp: '◄',
+        shiftCaps: '◄',
       },
     },
     {
       className: 'ArrowDown',
       eng: {
+        caps: '▼',
         caseDown: '▼',
         caseUp: '▼',
+        shiftCaps: '▼',
       },
       rus: {
+        caps: '▼',
         caseDown: '▼',
         caseUp: '▼',
+        shiftCaps: '▼',
       },
     },
     {
       className: 'ArrowRight',
       eng: {
+        caps: '►',
         caseDown: '►',
         caseUp: '►',
+        shiftCaps: '►',
       },
       rus: {
+        caps: '►',
         caseDown: '►',
         caseUp: '►',
+        shiftCaps: '►',
       },
     },
     {
       className: 'ControlRight',
       eng: {
+        caps: 'Ctrl',
         caseDown: 'Ctrl',
         caseUp: 'Ctrl',
+        shiftCaps: 'Ctrl',
       },
       rus: {
+        caps: 'Ctrl',
         caseDown: 'Ctrl',
         caseUp: 'Ctrl',
+        shiftCaps: 'Ctrl',
       },
     },
   ],
 ];
+
 export default keysData;
