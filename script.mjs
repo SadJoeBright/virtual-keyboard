@@ -59,8 +59,21 @@ description.innerHTML = 'The keyboard was created in <strong>Windows</strong>';
 wrapper.append(description);
 const langInstruction = document.createElement('p');
 langInstruction.classList.add('description');
-langInstruction.innerHTML = 'To switch the languge press <strong>LeftCtrl + LeftShift</strong>';
+langInstruction.innerHTML = 'To switch the languge press <strong>LeftCtrl + ShiftLeft</strong>';
 wrapper.append(langInstruction);
+
+const keyBackspase = document.querySelector('.Backspace');
+const keyTab = document.querySelector('.Tab');
+const keyDel = document.querySelector('.Delete');
+const keyCaps = document.querySelector('.CapsLock');
+const keyEnter = document.querySelector('.Enter');
+const keyShiftLeft = document.querySelector('.ShiftLeft');
+const keyShiftRight = document.querySelector('.ShiftRight');
+const keyArrowLeft = document.querySelector('.ArrowLeft');
+const keyArrowRight = document.querySelector('.ArrowRight');
+const keyArrowUp = document.querySelector('.ArrowUp');
+const keyArrowDown = document.querySelector('.ArrowDown');
+const langKey = document.querySelector('.Lang');
 
 function activate(event) {
   event.preventDefault();
@@ -71,6 +84,7 @@ function deactivate(event) {
   event.preventDefault();
   if (event.code !== 'CapsLock') document.querySelector(`.${event.code}`).classList.remove('keyboard__key_active');
 }
+
 function addCharacter(event) {
   const cursorPosition = textArea.selectionStart;
   if ((event.target !== textArea
@@ -85,65 +99,6 @@ function addCharacter(event) {
   textArea.scrollTop = textArea.scrollHeight;
 }
 
-function moveCursorLeft() {
-  const currentPosition = textArea.selectionStart;
-  if (currentPosition > 0) {
-    textArea.setSelectionRange(currentPosition - 1, currentPosition - 1);
-  }
-}
-const keyArrowLeft = document.querySelector('.ArrowLeft');
-keyArrowLeft.addEventListener('click', moveCursorLeft);
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'ArrowLeft') moveCursorLeft();
-});
-
-function moveCursorRight() {
-  const currentPosition = textArea.selectionStart;
-  textArea.setSelectionRange(currentPosition + 1, currentPosition + 1);
-}
-const keyArrowRight = document.querySelector('.ArrowRight');
-keyArrowRight.addEventListener('click', moveCursorRight);
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'ArrowRight') moveCursorRight();
-});
-
-function moveCursorUp() {
-  const currentCursorPosition = textArea.selectionStart;
-  const currentLineStartPosition = textArea.value.lastIndexOf('\n', currentCursorPosition - 1) + 1;
-  const previousLineStartPosition = textArea.value.lastIndexOf('\n', currentLineStartPosition - 2) + 1;
-  const previousLineEndPosition = textArea.value.indexOf('\n', previousLineStartPosition);
-  const newCursorPosition = Math.min(previousLineEndPosition, currentCursorPosition
-  - (currentLineStartPosition - previousLineStartPosition));
-  textArea.selectionStart = newCursorPosition;
-  textArea.selectionEnd = newCursorPosition;
-}
-
-function moveCursorDovn() {
-  const currentCursorPosition = textArea.selectionEnd;
-  const currentLineEndPosition = textArea.value.indexOf('\n', currentCursorPosition);
-  const nextLineEndPosition = textArea.value.indexOf('\n', currentLineEndPosition + 1);
-  const newCursorPosition = Math.min(textArea.value.length, currentCursorPosition
-  + (nextLineEndPosition - currentLineEndPosition));
-  textArea.selectionStart = newCursorPosition;
-  textArea.selectionEnd = newCursorPosition;
-}
-
-const arrowUpKey = document.querySelector('.ArrowUp');
-const arrowDownKey = document.querySelector('.ArrowDown');
-arrowUpKey.addEventListener('click', moveCursorUp);
-arrowDownKey.addEventListener('click', moveCursorDovn);
-function emulateEnterKey() {
-  const cursorPosition = textArea.selectionStart;
-  textArea.value = `${textArea.value.substring(0, cursorPosition)}\n${textArea.value.substring(cursorPosition)}`;
-  textArea.selectionStart = cursorPosition + 1;
-  textArea.selectionEnd = textArea.selectionStart;
-}
-const keyEnter = document.querySelector('.Enter');
-keyEnter.addEventListener('click', emulateEnterKey);
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Enter') emulateEnterKey();
-});
-
 function emulateBackspaseKey() {
   const cursorPosition = textArea.selectionStart;
   if (cursorPosition > 0) {
@@ -153,12 +108,13 @@ function emulateBackspaseKey() {
     textArea.selectionEnd = textArea.selectionStart;
   }
 }
-const keyBackspase = document.querySelector('.Backspace');
-keyBackspase.addEventListener('click', emulateBackspaseKey);
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'Backspace') emulateBackspaseKey();
-});
-document.addEventListener('keydown', addCharacter);
+
+function emulateTabKey() {
+  const cursorPosition = textArea.selectionStart;
+  textArea.value = `${textArea.value.substring(0, cursorPosition)}  ${textArea.value.substring(cursorPosition)}`;
+  textArea.selectionStart = cursorPosition + 2;
+  textArea.selectionEnd = textArea.selectionStart;
+}
 
 function emulateDeleteKey() {
   const cursorPosition = textArea.selectionStart;
@@ -167,47 +123,42 @@ function emulateDeleteKey() {
   textArea.selectionStart = cursorPosition;
   textArea.selectionEnd = textArea.selectionStart;
 }
-const keyDel = document.querySelector('.Delete');
-keyDel.addEventListener('click', emulateDeleteKey);
 
-function emulateTabKey() {
-  const cursorPosition = textArea.selectionStart;
-  textArea.value = `${textArea.value.substring(0, cursorPosition)}  ${textArea.value.substring(cursorPosition)}`;
-  textArea.selectionStart = cursorPosition + 2;
-  textArea.selectionEnd = textArea.selectionStart;
-}
-const keyTab = document.querySelector('.Tab');
-keyTab.addEventListener('click', emulateTabKey);
-
-function toggleLang() {
-  lang = lang === 'eng' ? 'rus' : 'eng';
+function emulatekeyCaps(event) {
+  if (event.target === keyCaps) event.target.classList.toggle('keyboard__key_active');
+  if (event.code === 'CapsLock') keyCaps.classList.toggle('keyboard__key_active');
+  if (keyCase !== 'caps' && !(keyShiftLeft.classList.contains('keyboard__key_active') || keyShiftLeft.classList.contains('keyboard__key_active'))) {
+    keyCase = 'caps';
+  } else if (keyCase !== 'caps' && (keyShiftLeft.classList.contains('keyboard__key_active') || keyShiftLeft.classList.contains('keyboard__key_active'))) {
+    keyCase = 'shiftCaps';
+  } else {
+    keyCase = 'caseDown';
+  }
   for (let i = 0; i < keysData.length; i += 1) {
     for (let j = 0; j < keysData[i].length; j += 1) {
       document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].textContent = keysData[i][j][`${lang}`][keyCase];
     }
   }
-  localStorage.setItem('lang', lang);
 }
 
-const langKey = document.querySelector('.Lang');
-langKey.addEventListener('click', toggleLang);
+function emulateEnterKey() {
+  const cursorPosition = textArea.selectionStart;
+  textArea.value = `${textArea.value.substring(0, cursorPosition)}\n${textArea.value.substring(cursorPosition)}`;
+  textArea.selectionStart = cursorPosition + 1;
+  textArea.selectionEnd = textArea.selectionStart;
+}
 
-const rightShift = document.querySelector('.ShiftRight');
-const leftShift = document.querySelector('.ShiftLeft');
-const capsKey = document.querySelector('.CapsLock');
-
-function toggleShift(event) {
-  // console.log('in: ', keyCase);
-  if (event.target === leftShift || event.target === rightShift) {
+function emulateShiftKey(event) {
+  if (event.target === keyShiftLeft || event.target === keyShiftRight) {
     event.target.classList.toggle('keyboard__key_active');
   }
   if (keyCase === 'caseUp') {
-    rightShift.classList.remove('keyboard__key_active');
-    leftShift.classList.remove('keyboard__key_active');
+    keyShiftRight.classList.remove('keyboard__key_active');
+    keyShiftLeft.classList.remove('keyboard__key_active');
   }
   if (keyCase === 'caseDown') {
     keyCase = 'caseUp';
-  } else if (capsKey.classList.contains('keyboard__key_active') && keyCase !== 'shiftCaps') {
+  } else if (keyCaps.classList.contains('keyboard__key_active') && keyCase !== 'shiftCaps') {
     keyCase = 'shiftCaps';
   } else if (keyCase === 'shiftCaps') {
     keyCase = 'caps';
@@ -220,50 +171,87 @@ function toggleShift(event) {
       document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].textContent = keysData[i][j][`${lang}`][keyCase];
     }
   }
-  // console.log('out: ', keyCase);
 }
 
-function emulateCapsKey(event) {
-  if (event.target === capsKey) event.target.classList.toggle('keyboard__key_active');
-  if (event.code === 'CapsLock') capsKey.classList.toggle('keyboard__key_active');
-  if (keyCase !== 'caps' && !(leftShift.classList.contains('keyboard__key_active') || leftShift.classList.contains('keyboard__key_active'))) {
-    keyCase = 'caps';
-  } else if (keyCase !== 'caps' && (leftShift.classList.contains('keyboard__key_active') || leftShift.classList.contains('keyboard__key_active'))) {
-    keyCase = 'shiftCaps';
-  } else {
-    keyCase = 'caseDown';
+function moveCursorLeft() {
+  const currentPosition = textArea.selectionStart;
+  if (currentPosition > 0) {
+    textArea.setSelectionRange(currentPosition - 1, currentPosition - 1);
   }
+}
+
+function moveCursorRight() {
+  const currentPosition = textArea.selectionStart;
+  textArea.setSelectionRange(currentPosition + 1, currentPosition + 1);
+}
+
+function moveCursorUp() {
+  const currentCursorPosition = textArea.selectionStart;
+  const currentLineStartPosition = textArea.value.lastIndexOf('\n', currentCursorPosition - 1) + 1;
+  const previousLineStartPosition = textArea.value.lastIndexOf('\n', currentLineStartPosition - 2) + 1;
+  const previousLineEndPosition = textArea.value.indexOf('\n', previousLineStartPosition);
+  const newCursorPosition = Math.min(previousLineEndPosition, currentCursorPosition
+  - (currentLineStartPosition - previousLineStartPosition));
+  textArea.selectionStart = newCursorPosition;
+  textArea.selectionEnd = newCursorPosition;
+}
+
+function moveCursorDown() {
+  const currentCursorPosition = textArea.selectionEnd;
+  const currentLineStartPosition = textArea.value.lastIndexOf('\n', currentCursorPosition) + 1;
+  const nextLineEndPosition = textArea.value.indexOf('\n', currentCursorPosition);
+  if (nextLineEndPosition === -1) return;
+  const newCursorPosition = Math.min(currentCursorPosition
+  + (nextLineEndPosition - currentLineStartPosition) + 1, textArea.value.length);
+  textArea.selectionStart = newCursorPosition;
+  textArea.selectionEnd = newCursorPosition;
+}
+
+function toggleLang() {
+  lang = lang === 'eng' ? 'rus' : 'eng';
   for (let i = 0; i < keysData.length; i += 1) {
     for (let j = 0; j < keysData[i].length; j += 1) {
       document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].textContent = keysData[i][j][`${lang}`][keyCase];
     }
   }
+  localStorage.setItem('lang', lang);
 }
-capsKey.addEventListener('click', emulateCapsKey);
 
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-    toggleShift(event);
-  }
-});
-document.addEventListener('keydown', (event) => {
-  if (event.code === 'CapsLock') {
-    emulateCapsKey(event);
-  }
-});
-window.addEventListener('keyup', (event) => {
-  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
-    if (keyCase === 'caseUp' || keyCase === 'shiftCaps') toggleShift(event);
-  }
-});
-
-rightShift.addEventListener('click', toggleShift);
-leftShift.addEventListener('click', toggleShift);
-
+document.addEventListener('click', () => textArea.focus());
 document.querySelectorAll('.keyboard__key').forEach((key) => key.addEventListener('click', addCharacter));
+keyBackspase.addEventListener('click', emulateBackspaseKey);
+keyTab.addEventListener('click', emulateTabKey);
+keyDel.addEventListener('click', emulateDeleteKey);
+keyCaps.addEventListener('click', emulatekeyCaps);
+keyEnter.addEventListener('click', emulateEnterKey);
+keyShiftLeft.addEventListener('click', emulateShiftKey);
+keyShiftRight.addEventListener('click', emulateShiftKey);
+keyArrowLeft.addEventListener('click', moveCursorLeft);
+keyArrowRight.addEventListener('click', moveCursorRight);
+keyArrowUp.addEventListener('click', moveCursorUp);
+keyArrowDown.addEventListener('click', moveCursorDown);
+langKey.addEventListener('click', toggleLang);
+
+document.addEventListener('keydown', addCharacter);
 document.addEventListener('keydown', activate);
 document.addEventListener('keyup', deactivate);
-document.addEventListener('click', () => textArea.focus());
+document.addEventListener('keydown', (event) => {
+  if (event.code === 'Backspace') emulateBackspaseKey();
+  if (event.code === 'Tab') emulateTabKey();
+  if (event.code === 'Delete') emulateDeleteKey();
+  if (event.code === 'CapsLock') emulatekeyCaps(event);
+  if (event.code === 'Enter') emulateEnterKey();
+  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') emulateShiftKey(event);
+  if (event.code === 'ArrowLeft') moveCursorLeft();
+  if (event.code === 'ArrowRight') moveCursorRight();
+  if (event.code === 'ArrowUp') moveCursorUp();
+  if (event.code === 'ArrowDown') moveCursorDown();
+});
+document.addEventListener('keyup', (event) => {
+  if (event.code === 'ShiftLeft' || event.code === 'ShiftRight') {
+    if (keyCase === 'caseUp' || keyCase === 'shiftCaps') emulateShiftKey(event);
+  }
+});
 document.addEventListener('keydown', (event) => {
   if (event.ctrlKey && event.shiftKey) {
     toggleLang();
