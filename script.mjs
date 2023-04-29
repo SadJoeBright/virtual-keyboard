@@ -77,24 +77,30 @@ const langKey = document.querySelector('.Lang');
 
 function activate(event) {
   event.preventDefault();
-  if (event.code !== 'CapsLock') document.querySelector(`.${event.code}`).classList.add('keyboard__key_active');
+  if (event.code !== 'CapsLock' && (keysData.flat().some((key) => event.code === key.className))) {
+    document.querySelector(`.${event.code}`).classList.add('keyboard__key_active');
+  }
 }
 
 function deactivate(event) {
   event.preventDefault();
-  if (event.code !== 'CapsLock') document.querySelector(`.${event.code}`).classList.remove('keyboard__key_active');
+  if (event.code !== 'CapsLock' && (keysData.flat().some((key) => event.code === key.className))) {
+    document.querySelector(`.${event.code}`).classList.remove('keyboard__key_active');
+  }
 }
 
 function addCharacter(event) {
   const cursorPosition = textArea.selectionStart;
-  if ((event.target !== textArea
-    && !specialKeys.some((key) => event.target.classList.contains(key)))
-  || (event.target === textArea && !specialKeys.some((key) => document.querySelector(`.${event.code}`).classList.contains(key)))) {
-    textArea.value = textArea.value.substring(0, cursorPosition)
-    + (event.target.textContent || document.querySelector(`.${event.code}`).textContent)
-    + textArea.value.substring(cursorPosition);
-    textArea.selectionStart = cursorPosition + 1;
-    textArea.selectionEnd = textArea.selectionStart;
+  if (keysData.flat().some((key) => event.code === key.className)) {
+    if ((event.target !== textArea
+      && !specialKeys.some((key) => event.target.classList.contains(key)))
+    || (event.target === textArea && !specialKeys.some((key) => document.querySelector(`.${event.code}`).classList.contains(key)))) {
+      textArea.value = textArea.value.substring(0, cursorPosition)
+      + (event.target.textContent || document.querySelector(`.${event.code}`).textContent)
+      + textArea.value.substring(cursorPosition);
+      textArea.selectionStart = cursorPosition + 1;
+      textArea.selectionEnd = textArea.selectionStart;
+    }
   }
   textArea.scrollTop = textArea.scrollHeight;
 }
