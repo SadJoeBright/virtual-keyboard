@@ -971,4 +971,23 @@ const keysData = [
   ],
 ];
 
-export default keysData;
+const specialKeys = [
+  'Backspace',
+  'Tab',
+  'Enter',
+  'CapsLock',
+  'ShiftLeft',
+  'ShiftRight',
+  'AltLeft',
+  'AltRight',
+  'ControlLeft',
+  'ControlRight',
+  'Lang',
+  'Delete',
+  'ArrowLeft',
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowRight',
+];
+
+export { keysData, specialKeys };

@@ -1,23 +1,4 @@
-import keysData from './keysData.mjs';
-
-const specialKeys = [
-  'Backspace',
-  'Tab',
-  'Enter',
-  'CapsLock',
-  'ShiftLeft',
-  'ShiftRight',
-  'AltLeft',
-  'AltRight',
-  'ControlLeft',
-  'ControlRight',
-  'Lang',
-  'Delete',
-  'ArrowLeft',
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowRight',
-];
+import { keysData, specialKeys } from './keysData.mjs';
 
 let lang = localStorage.getItem('lang') || 'eng';
 let keyCase = 'caseDown';
