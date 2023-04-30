@@ -1,7 +1,6 @@
 body {
   background-color: #232323;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  transform: scale(90%);
 }
 * {
   box-sizing: border-box;
@@ -15,7 +14,9 @@ body {
   align-content: center;
 }
 .title {
-  margin: -20px auto 10px;
+  margin: 5px auto 15px;
+  font-size: 32px;
+  line-height: 32px;
   text-align: center;
   color: rgb(197, 197, 197);
 
@@ -23,7 +24,7 @@ body {
 .textarea {
   width: calc(100% - 10px);
   height: 250px;
-  margin: 25px auto;
+  margin: 0 auto;
   border-radius: 5px;
   outline: none;
   background: #373737;
@@ -36,6 +37,7 @@ body {
   width: 100%;
   height: 300px;
   padding: 5px 2px;
+  margin: 25px auto 10px;
   background: rgb(18, 75, 78);
   border-radius: 10px;
   box-shadow: 0 0 15px 1px rgb(125,249,255);
@@ -110,6 +112,12 @@ body {
   color: rgb(125,249,255);
   text-shadow: 0 0 5px rgb(125,249,255);
 }
+.keyboard__key.Space:active {
+  transform: scaleX(98%);
+  box-shadow: 0 0 8px 2px rgb(125,249,255);
+  color: rgb(125,249,255);
+  text-shadow: 0 0 5px rgb(125,249,255);
+}
 
 .keyboard__key_active {
   transform: scale(0.95);
@@ -118,9 +126,17 @@ body {
   text-shadow: 0 0 5px rgb(125,249,255);
 }
 
+.keyboard__key_active.Space {
+  transform: scaleX(98%);
+  box-shadow: 0 0 8px 2px rgb(125,249,255);
+  color: rgb(125,249,255);
+  text-shadow: 0 0 5px rgb(125,249,255);
+}
+
 .description {
-  font-size: 20px;
-  margin: 30px auto -20px;
+  font-size: 16px;
+  line-height: 25px;
+  margin: 10px auto 0px;
   color: rgb(197, 197, 197);
   text-align: center;
 }

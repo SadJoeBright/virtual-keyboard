@@ -8,7 +8,7 @@ document.body.prepend(wrapper);
 
 const title = document.createElement('h1');
 title.classList.add('title');
-title.innerText = 'RSS Virtual Keyboard';
+title.innerText = 'RSS Virtual keyboard';
 wrapper.append(title);
 
 const textArea = document.createElement('textarea');
@@ -36,12 +36,8 @@ for (let i = 0; i < keysData.length; i += 1) {
 
 const description = document.createElement('p');
 description.classList.add('description');
-description.innerHTML = 'The keyboard was created in <strong>Windows</strong>';
+description.innerHTML = 'The keyboard was created in <strong>Windows</strong><br>To switch the languge press <strong>LeftCtrl + ShiftLeft</strong>';
 wrapper.append(description);
-const langInstruction = document.createElement('p');
-langInstruction.classList.add('description');
-langInstruction.innerHTML = 'To switch the languge press <strong>LeftCtrl + ShiftLeft</strong>';
-wrapper.append(langInstruction);
 
 const keyBackspase = document.querySelector('.Backspace');
 const keyTab = document.querySelector('.Tab');
@@ -200,6 +196,13 @@ function toggleLang() {
     for (let j = 0; j < keysData[i].length; j += 1) {
       document.querySelectorAll('.keyboard__row')[i].querySelectorAll('.keyboard__key')[j].textContent = keysData[i][j][`${lang}`][keyCase];
     }
+  }
+  if (lang === 'eng') {
+    title.innerText = 'RSS Virtual keyboard';
+    description.innerHTML = 'The keyboard was created in <strong>Windows</strong><br>To switch the languge press <strong>LeftCtrl + ShiftLeft</strong>';
+  } else {
+    title.innerText = 'RSS Виртуальная клавиатура';
+    description.innerHTML = 'Клавиатура создана в опреационной системе <strong>Windows</strong><br>Для смены языка нажмите <strong>LeftCtrl + ShiftLeft</strong>';
   }
   localStorage.setItem('lang', lang);
 }
