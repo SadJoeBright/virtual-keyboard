@@ -68,7 +68,7 @@ function deactivate(event) {
 
 function addCharacter(event) {
   const cursorPosition = textArea.selectionStart;
-  if (keysData.flat().some((key) => event.code === key.className)) {
+  if (event.target !== textArea || keysData.flat().some((key) => event.code === key.className)) {
     if ((event.target !== textArea
       && !specialKeys.some((key) => event.target.classList.contains(key)))
     || (event.target === textArea && !specialKeys.some((key) => document.querySelector(`.${event.code}`).classList.contains(key)))) {
@@ -81,6 +81,7 @@ function addCharacter(event) {
   }
   textArea.scrollTop = textArea.scrollHeight;
 }
+
 
 function emulateBackspaseKey() {
   const cursorPosition = textArea.selectionStart;
