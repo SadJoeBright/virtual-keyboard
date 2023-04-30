@@ -82,7 +82,6 @@ function addCharacter(event) {
   textArea.scrollTop = textArea.scrollHeight;
 }
 
-
 function emulateBackspaseKey() {
   const cursorPosition = textArea.selectionStart;
   if (cursorPosition > 0) {
