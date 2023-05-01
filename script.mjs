@@ -8,7 +8,7 @@ document.body.prepend(wrapper);
 
 const title = document.createElement('h1');
 title.classList.add('title');
-title.innerText = 'RSS Virtual keyboard';
+title.innerText = lang === 'eng' ? 'RSS Virtual keyboard' : 'RSS Виртуальная клавиатура';
 wrapper.append(title);
 
 const textArea = document.createElement('textarea');
@@ -36,7 +36,8 @@ for (let i = 0; i < keysData.length; i += 1) {
 
 const description = document.createElement('p');
 description.classList.add('description');
-description.innerHTML = 'The keyboard was created in <strong>Windows</strong><br>To switch the languge press <strong>LeftCtrl + ShiftLeft</strong>';
+description.innerHTML = lang === 'eng' ? 'The keyboard was created in <strong>Windows</strong><br>To switch the languge press <strong>LeftCtrl + ShiftLeft</strong>'
+  : 'Клавиатура создана в опреационной системе <strong>Windows</strong><br>Для смены языка нажмите <strong>LeftCtrl + ShiftLeft</strong>';
 wrapper.append(description);
 
 const keyBackspase = document.querySelector('.Backspace');
